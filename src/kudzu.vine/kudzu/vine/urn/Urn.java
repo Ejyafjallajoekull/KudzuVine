@@ -23,16 +23,23 @@ public interface Urn<E> extends Collection<E> {
 	public E draw();
 	
 	/**
-	 * Subsequently draw the specified number of elements from the urn.
+	 * Subsequently draws the specified number of elements from the urn.
 	 * 
 	 * <p>The elements are returned as {@link List} in the order they have 
 	 * been drawn from the urn.</p>
 	 * 
 	 * @param numberOfDraws - the number of times to draw from the urn
-	 * @return a {@link List} of all draw results
+	 * @return a {@link List} of all drawn elements
 	 * @throws IllegalArgumentException if the number of draws is smaller 0 or the urn 
 	 * would be empty before drawing is finished
 	 */
 	public List<E> draw(int numberOfDraws);
+	
+	/**
+	 * Get all elements currently contained in the urn.
+	 * 
+	 * @return all elements in the urn
+	 */
+	public List<E> getContent();
 	
 }
