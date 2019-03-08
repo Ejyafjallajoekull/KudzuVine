@@ -146,8 +146,14 @@ public final class NonReplacingUrn<E> implements Urn<E> {
 	public boolean equals(Object obj) {
 		if (this == obj) {
 			return true;
-		} else if (obj instanceof ReplacingUrn) {
-			return this.content.equals(((NonReplacingUrn<?>) obj).content);
+		} else if (obj instanceof NonReplacingUrn) {
+			List<?> compContent = new ArrayList<>(((NonReplacingUrn<?>) obj).content);
+			for (Object contentObject : this.content) {
+				if (!compContent.remove(contentObject)) {
+					return false;
+				}
+			}
+			return compContent.isEmpty();
 		}
 		return false;
 	}

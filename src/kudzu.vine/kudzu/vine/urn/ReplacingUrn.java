@@ -133,7 +133,13 @@ public final class ReplacingUrn<E> implements Urn<E> {
 		if (this == obj) {
 			return true;
 		} else if (obj instanceof ReplacingUrn) {
-			return this.content.equals(((ReplacingUrn<?>) obj).content);
+			List<?> compContent = new ArrayList<>(((ReplacingUrn<?>) obj).content);
+			for (Object contentObject : this.content) {
+				if (!compContent.remove(contentObject)) {
+					return false;
+				}
+			}
+			return compContent.isEmpty();
 		}
 		return false;
 	}
